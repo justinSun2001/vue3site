@@ -1,0 +1,46 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../前端模块化"
+		},
+		{
+			"path": "../../Vue CLI"
+		},
+		{
+			"path": "../../vue-router"
+		},
+		{
+			"path": "../../vue-slot插槽"
+		},
+		{
+			"path": "../../vue基础语法"
+		},
+		{
+			"path": "../../vue组件"
+		},
+		{
+			"path": "../../Vuex"
+		},
+		{
+			"path": "../../tabbar"
+		},
+		{
+			"path": "../../css javascript/天气预报"
+		},
+		{
+			"path": "../../css javascript/优设"
+		},
+		{
+			"path": "../../css javascript/css+div"
+		},
+		{
+			"path": "../../react学习"
+		},
+		{
+			"path": "../../css javascript/再一次前端"
+		}
+	]
+}
