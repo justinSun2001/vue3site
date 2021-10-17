@@ -1,3 +1,4 @@
 module.exports = {
-  publicPath:'./'
+  publicPath:'./',
+  index:path.resolve(_dirname,'../dist/index.html')
 }
