@@ -38,6 +38,7 @@ export default{
   },
   mounted () {
     this.getAmount();
+    
   },
   updated() {
     this.getUpdate();
@@ -87,15 +88,44 @@ export default{
 
 <style scoped>
 .item-text {
-  padding-top:20px;
-  padding-bottom: 20px;
+  padding-top:10px;
+  padding-bottom: 5px;
+  background-color: #f5f5f5;
 }
+@media screen and (max-width: 480px){
+.text-right {
+  min-height: 50px;
+  background-color: white;
+  border:1px solid rgba(227, 230, 235, 0.923);
+  margin-bottom:10px;
+  margin-left: 10px;
+  margin-right:10px;
+  line-height: 150%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+}
+@media screen and (min-width: 480px) and (max-width: 1280px){
+.text-right {
+  min-height: 50px;
+  background-color: white;
+  border:1px solid rgba(227, 230, 235, 0.923);
+  margin-bottom:10px;
+  margin-left: 10px;
+  margin-right:10px;
+  line-height: 150%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+}
+@media screen and (min-width: 1280px){
 .text-right {
   height:50px;
-  background-color: whitesmoke;
+  background-color: white;
   border:1px solid rgba(227, 230, 235, 0.923);
   line-height: 50px;
+  margin-bottom: 10px;
   overflow:hidden;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 }
 .active {
   color:grey;

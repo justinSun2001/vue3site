@@ -25,22 +25,16 @@
 			"path": "../../Vuex"
 		},
 		{
-			"path": "../../tabbar"
-		},
-		{
 			"path": "../../css javascript/天气预报"
 		},
 		{
 			"path": "../../css javascript/优设"
 		},
 		{
-			"path": "../../css javascript/css+div"
+			"path": "../../../ts:vue3"
 		},
 		{
-			"path": "../../react学习"
-		},
-		{
-			"path": "../../css javascript/再一次前端"
+			"path": "../../../vue3项目"
 		}
 	]
 }

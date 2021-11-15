@@ -17,14 +17,14 @@
       <slot name="item-text">{{message}}</slot>
       </div>
       <el-divider></el-divider>
-      <div class="item-bottom" @click.once="itemClick">
-        <!-- 不活跃 -->
-      <slot v-if="isActive" name="item-likes">原始图片</slot>
-      <!-- 活跃 -->
-      <slot v-else name="item-likes-active">活跃图片</slot>
-      </div>
-      <div class="item-likes">{{likes}}</div>
-      <div class="item-date">{{date}}</div>
+        <div class="item-bottom" @click.once="itemClick">
+          <!-- 不活跃 -->
+        <slot v-if="isActive" name="item-likes">原始图片</slot>
+        <!-- 活跃 -->
+        <slot v-else name="item-likes-active">活跃图片</slot>
+        </div>
+        <div class="item-likes">{{likes}}</div>
+        <div class="item-date">{{date}}</div>
     </div>
   </div>
 </template>
@@ -96,9 +96,48 @@ export default {
 <style scoped>
   .main-content-item {
     padding-left:50px;
-    padding-top:25px;
+    padding-top:10px;
     padding-right: 50px;
   }
+  @media screen and (max-width: 720px){
+  .item-icon img {
+    height:175px;
+    width:300px;
+    opacity: 0.9;
+    border:1px solid rgb(238, 247, 236);
+    border-radius: 10px;
+  }
+  
+  .item-logo {
+    color: turquoise;
+    padding-bottom: 3px;
+    display: none;
+  }
+  .item-title {
+    font-size: 20px;
+  }
+  .item-text {
+    padding-top:10px;
+    color:rgb(234, 59, 24);
+  }
+
+    .item-bottom {
+      width:25px;
+      height:25px;
+      
+    }
+    .item-likes {
+      padding-left: 30px;
+      margin-top: -20px;
+      font-size: 10px;
+    }
+    .item-date {
+      text-align: right;
+      margin-top: -20px;
+      color:rgb(187, 177, 168);
+    }
+  }
+  @media screen and (min-width: 720px){
   .item-icon img {
     height:175px;
     width:300px;
@@ -137,5 +176,5 @@ export default {
     margin-top: -20px;
     color:rgb(187, 177, 168);
   }
-
+  }
 </style>

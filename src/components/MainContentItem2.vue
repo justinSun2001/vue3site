@@ -97,9 +97,50 @@ export default {
 <style scoped>
   .main-content-item {
     padding-left:50px;
-    padding-top:25px;
+    padding-top:10px;
     padding-right: 50px;
   }
+  @media screen and (max-width: 720px){
+  .item-icon img {
+    height:175px;
+    width:300px;
+    opacity: 0.9;
+    border:1px solid rgb(238, 247, 236);
+    border-radius: 10px;
+  }
+  
+  .item-logo {
+    color: turquoise;
+    padding-bottom: 3px;
+    display: none;
+  }
+  .item-title {
+    font-size: 20px;
+  }
+  .item-text {
+    padding-top:10px;
+    color:rgb(234, 59, 24);
+  }
+  .divider {
+    display:none;
+  }
+    .item-bottom {
+      width:25px;
+      height:25px;
+      
+    }
+    .item-likes {
+      padding-left: 30px;
+      margin-top: -20px;
+      font-size: 10px;
+    }
+    .item-date {
+      text-align: right;
+      margin-top: -20px;
+      color:rgb(187, 177, 168);
+    }
+  }
+  @media screen and (min-width: 720px){
   .item-icon img {
     height:175px;
     width:300px;
@@ -137,6 +178,7 @@ export default {
     text-align: right;
     margin-top: -20px;
     color:rgb(187, 177, 168);
+  }
   }
 
 </style>

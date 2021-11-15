@@ -30,10 +30,6 @@
       <template v-slot:item-likes-active><img src="../assets/img/likes01.png" ></template>
     </main-content-item>
     </div>
-    <div class="side">
-      <side-content :amount="amount"></side-content>
-    </div>
-</div>
     <el-divider></el-divider>
   <div class="pageIndex">
 <el-pagination
@@ -45,6 +41,10 @@
   :total="total">
 </el-pagination>
   </div>
+  <div class="side">
+      <side-content :amount="amount"></side-content>
+    </div>
+</div>
   <bottom-content></bottom-content>
 </template>
 
@@ -96,10 +96,10 @@ export default {
 
 
 <style scoped>
-.page {
+  .page {
   position: relative;
-  height: 700px;
-}
+  }
+  @media screen and (min-width: 1280px){
   .main {
     width:60%;
     height:225px;
@@ -108,10 +108,19 @@ export default {
     width:25px;
     height:25px;
   }
+  }
+  @media screen and (max-width: 1280px){
+  .main img {
+    width:25px;
+    height:25px;
+  }
+  }
+  @media screen and (min-width: 1280px){
   .side {
     position: absolute;
-    top:30px;
+    top:15px;
     right:0;
+  }
   }
   .pageIndex {
     text-align: center;

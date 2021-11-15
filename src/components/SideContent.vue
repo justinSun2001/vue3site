@@ -109,6 +109,7 @@ methods: {
 </script>
 
 <style>
+
   .side1 {
     padding-left: 20px;
     padding-top: 20px;

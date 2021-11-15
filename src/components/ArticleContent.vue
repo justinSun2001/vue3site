@@ -88,11 +88,18 @@ computed: {
     top:0;
     left:3%;
   }
+  @media screen and (min-width: 1280px){
   .side {
     position: fixed;
     top:10%;
     right:0;
     background-color: lightgoldenrodyellow;
+  }
+  }
+  @media screen and(max-width: 1280px){
+    .side {
+      display:none;
+    }
   }
   .title {
     text-align: center;
