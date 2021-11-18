@@ -55,14 +55,14 @@ export default{
       this.isActive=true;
       },
     getAmount(){
-        this.axios.get("http://localhost:3000/catalog/data").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
         this.total=result.data.article_count;
         this.point=result.data.article_count;
       })
       
     },
      handleCurrentChange: function(currentPage){
-       this.axios.get("http://localhost:3000/catalog/data").then(result=>{
+       this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
         this.currentPage = currentPage;
         let p=result.data.article_count-((currentPage)*7);
         if(p<0) this.point=0;
@@ -71,9 +71,9 @@ export default{
       },
     getUpdate() {
       for(let i=this.total-1; i>=0; i--){
-      this.axios.get("http://localhost:3000/catalog/articlesData").then(result=>{
+      this.axios.get("http://39.107.99.66:3000/catalog/articlesData").then(result=>{
          this.items[i]=result.data[i]._id;
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+this.items[i]+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+this.items[i]+"").then(result=>{
           this.title[i]=result.data.article.title;
           this.message[i]=result.data.article.summary;
           this.finals[i]=this.title[i]+":"+this.message[i];

@@ -23,9 +23,9 @@ export default {
   },
   methods: {
     getAll() {
-      this.axios.get("http://localhost:3000/catalog/articlesData").then(result=>{
+      this.axios.get("http://39.107.99.66:3000/catalog/articlesData").then(result=>{
         let id=result.data[0]._id;
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+id+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id+"").then(result=>{
           this.title=result.data.article.title;
           this.text=result.data.article.summary;
       })

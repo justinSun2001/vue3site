@@ -52,13 +52,13 @@ mounted () {
   },
   methods: {
     getAll() {
-      this.axios.get("http://localhost:3000/catalog/data").then(result=>{
+      this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
         this.amount=result.data.article_count-1;
       });
-      this.axios.get("http://localhost:3000/catalog/articlesData").then(result=>{
+      this.axios.get("http://39.107.99.66:3000/catalog/articlesData").then(result=>{
         let index=this.$store.state.pageIndex;
         let id=result.data[index]._id;
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+id+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id+"").then(result=>{
           this.title=result.data.article.title;
           this.message=result.data.article.summary;
           this.text=result.data.article.text;

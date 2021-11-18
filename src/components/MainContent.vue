@@ -77,13 +77,13 @@ export default {
   },
   methods: {
      handleCurrentChange: function(currentPage){
-       this.axios.get("http://localhost:3000/catalog/data").then(result=>{
+       this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
         this.currentPage = currentPage;
         this.index=result.data.article_count-(currentPage*3-2);
        })
       },
       getAmount(){
-        this.axios.get("http://localhost:3000/catalog/data").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
         this.total=(result.data.article_count)/3;
         this.index=result.data.article_count-1;
         this.amount=result.data.article_count-1;

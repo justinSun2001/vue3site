@@ -85,21 +85,21 @@ methods: {
         });
       },
       getText(){
-        this.axios.get("http://localhost:3000/catalog/articlesData").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData").then(result=>{
           let id1=result.data[this.amount]._id;
           let id2=result.data[this.amount-1]._id;
           let id3=result.data[this.amount-2]._id;
           let id4=result.data[this.amount-3]._id;
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+id1+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id1+"").then(result=>{
           this.text1=result.data.article.genre[0].name+':   '+result.data.article.title;
       });
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+id2+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id2+"").then(result=>{
           this.text2=result.data.article.genre[0].name+':   '+result.data.article.title;
       });
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+id3+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id3+"").then(result=>{
           this.text3=result.data.article.genre[0].name+':   '+result.data.article.title;
       });
-        this.axios.get("http://localhost:3000/catalog/articlesData/"+id4+"").then(result=>{
+        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id4+"").then(result=>{
           this.text4=result.data.article.genre[0].name+':   '+result.data.article.title;
       });
       })
