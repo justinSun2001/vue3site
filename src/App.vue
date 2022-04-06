@@ -16,5 +16,8 @@ export default {
 </script>
 
 <style>
-
+body {
+  margin: 0;
+}
+/* 去除body默认样式 */
 </style>

@@ -19,6 +19,7 @@
         @current-change="handleCurrentChange"
         :current-page="currentPage"
         :page-size="1"
+        pager-count="5"
         :total="total">
       </el-pagination>
     </div>
@@ -79,6 +80,10 @@ export default {
 
 
 <style scoped>
+  .page {
+    margin-left: 8px;
+  }
+  /* body 外边距为0，实现容器外边距 */
   @media screen and (min-width: 1080px){
     .page {
       display:flex;

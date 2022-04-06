@@ -58,7 +58,7 @@
 
 /* 消除 router-link默认样式 同时添加按钮动画*/
 .router-link-active {
-  text-decoration: noen;
+  text-decoration: none;
   color: white;
 }
 a {
