@@ -82,6 +82,7 @@ export default {
 <style scoped>
   .page {
     margin-left: 8px;
+    margin-right: 8px;
   }
   /* body 外边距为0，实现容器外边距 */
   @media screen and (min-width: 1080px){
