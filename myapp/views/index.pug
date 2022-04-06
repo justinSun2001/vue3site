@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #[em LocalLibrary], a very basic Express website developed as a tutorial example on the Mozilla Developer Network.
+  p 欢迎来到本地文章后台数据管理系统
 
 
   h1 Dynamic content
@@ -11,11 +11,11 @@ block content
     p Error getting dynamic content.
   else
 
-    p The library has the following record counts:
+    p 暂时包含以下内容:
 
     ul
-      li #[strong Articles:] !{data.article_count}
-      li #[strong Copies:] !{data.article_instance_count}
-      li #[strong Copies available:] !{data.article_instance_available_count}
-      li #[strong Authors:] !{data.author_count}
-      li #[strong Genres:] !{data.genre_count}
+      li #[strong 文章:] !{data.article_count}
+      //- li #[strong Copies:] !{data.article_instance_count}
+      //- li #[strong Copies available:] !{data.article_instance_available_count}
+      li #[strong 作者:] !{data.author_count}
+      li #[strong 类型:] !{data.genre_count}

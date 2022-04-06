@@ -101,7 +101,7 @@ exports.author_delete_get = function (req, res, next) {
         author: function (callback) {
             Author.findById(req.params.id).exec(callback)
         },
-        authors_s: function (callback) {
+        authors_articles: function (callback) {
             Article.find({ 'author': req.params.id }).exec(callback)
         },
     }, function (err, results) {
@@ -122,13 +122,13 @@ exports.author_delete_post = function (req, res, next) {
         author: function (callback) {
             Author.findById(req.body.authorid).exec(callback)
         },
-        authors_s: function (callback) {
+        authors_articles: function (callback) {
             Article.find({ 'author': req.body.authorid }).exec(callback)
         },
     }, function (err, results) {
         if (err) { return next(err); }
         // Success.
-        if (results.authors_s.length > 0) {
+        if (results.authors_articles.length > 0) {
             // Author has s. Render in same way as for GET route.
             res.render('author_delete', { title: 'Delete Author', author: results.author, author_articles: results.authors_articles });
             return;

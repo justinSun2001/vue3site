@@ -1,6 +1,6 @@
 <template>
   <head-content></head-content>
-     <main-content></main-content>
+  <main-content></main-content>
 </template>
 
 <script>

@@ -12,6 +12,7 @@ export default {
 
 <style scoped>
   .footer {
+    position:absolute;
     text-align: center;
     font-size: 10px;
     width:100%;

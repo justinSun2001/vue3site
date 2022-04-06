@@ -1,10 +1,15 @@
 <template>
-<div class="head">
-  <el-breadcrumb separator-class="el-icon-arrow-right">
+<div :style="{height:200 + 'px', backgroundImage: moodColor}">
+  <!-- <el-breadcrumb separator-class="el-icon-arrow-right">
   <el-breadcrumb-item :to="{ path: '/home' }">Home</el-breadcrumb-item>
   <el-breadcrumb-item :to="{ path: '/articles' }">Articles</el-breadcrumb-item>
   <el-breadcrumb-item>SC</el-breadcrumb-item>
-</el-breadcrumb>
+</el-breadcrumb> -->
+  <div class="top">
+    <div v-if = 'nochange' @click = 'showBtn'>切换背景</div>
+    <button v-if = 'change' @click = 'mood1'>暖色调</button>
+    <button v-if = 'change' @click = 'mood2'>冷色调</button>
+  </div>
   <div class="main">{{title}}</div>
   <div class="content">{{text}}</div>
 </div>
@@ -15,43 +20,62 @@ export default {
   data() {
     return {
       title:'Lifestyle',
-      text:''
+      text:'哎呀！出错啦',
+      moodColor:'linear-gradient(to right, blue, purple',
+      nochange: true,
+      change: false,
     }
-  },
-  mounted() {
-    this.getAll();
   },
   methods: {
-    getAll() {
-      this.axios.get("http://39.107.99.66:3000/catalog/articlesData").then(result=>{
-        let id=result.data[0]._id;
-        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+id+"").then(result=>{
-          this.title=result.data.article.title;
-          this.text=result.data.article.summary;
-      })
-      })
-    }
+    showBtn(){
+      this.nochange=false;
+      this.change=true;
+    },
+    mood1() {
+      this.moodColor='linear-gradient(to right, red, orange';
+      this.change=false;
+      this.nochange=true;
+    },
+    mood2() {
+      this.moodColor='linear-gradient(to right, cyan, gray';
+      this.change=false;
+      this.nochange=true;
+    },
   }
 }
 </script>
 
 <style scoped>
-  .head {
-    height:200px;
-    background-color: rgb(157, 216, 158);
+  .top {
+    text-align: center;
+  }
+  .top div {
+    font-size: 10px;
+  }
+  button {
+    background-color: rgb(238, 212, 212);
+    border: 0.5px solid;
+    color: black;
+    padding: 5px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 10px;
+    cursor: pointer;
   }
   .main {
     text-align: center;
     color:white;
     font-size: 20px;
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 20px;
   }
   .content {
     text-align: center;
     padding-left: 15%;
     padding-right: 15%;
-    color:#7e868bd3;
+    color:#f7fafcd3;
     font-size: 10px;
   }
+
 </style>

@@ -1,22 +1,18 @@
 <template>
 <div class="main">
-  <div class="article-content">
-    <div class="item-text">
-      <div class="text-right" v-for="(item,index) in finals.slice(point,total-((currentPage-1)*7)).reverse()" :key="index">
-          <span @click="itemClick(index)" :class="{active:isActive}">{{item}}</span>
+    <div class="text-right" v-for="(item,index) in message.slice(start,end).reverse()" :key="index">
+      <div class="text-container"><a class="text" @click="itemClick(index)">{{item}}</a></div>
     </div>
-  </div>
-  </div>
-  <div class="pageIndex">
+</div>
+<div class="pageIndex">
   <el-pagination
-  background
-  layout="prev, pager, next"
-  @current-change="handleCurrentChange"
-  :current-page="currentPage"
-  :page-size="7"
-  :total="total">
-</el-pagination>
-  </div>
+    background
+    layout="prev, pager, next"
+    @current-change="handleCurrentChange"
+    :current-page="currentPage"
+    :page-size="pageSize"
+    :total="total">
+  </el-pagination>
 </div>
 </template>
 
@@ -26,111 +22,80 @@ export default{
   name:'ArticlesContent',
   data () {
     return {
-      point:1,
       total:100,
-      currentPage:100,
+      currentPage:1,
+      pageSize:10,
+      start:1,
+      end:1,
       message:[],
-      title:[],
+      // title:[],
+      // finals:[],
       items:[],
-      finals:[],
-      isActive:false,
     }
   },
-  mounted () {
-    this.getAmount();
-    
+  
+  created () {
+      this.axios.get("/catalog/data").then((result)=>{
+      this.total=result.data.article_count;
+      this.start=this.total-(this.currentPage*this.pageSize)>0?this.total-(this.currentPage*this.pageSize):0;
+      this.end=this.total-((this.currentPage-1)*this.pageSize);
+        for(let i=this.total-1; i>=0; i--){
+        this.axios.get("/catalog/articlesData").then((result)=>{
+          this.items[i]=result.data[i]._id;
+          this.axios.get("/catalog/articlesData/"+this.items[i]+"").then(result=>{
+            // this.title[i]=result.data.article.title;
+            this.message[i]=result.data.article.summary;
+            // this.finals[i]=this.title[i]+":"+this.message[i];
+          console.log(result);
+        })
+      })
+    }
+  })
+
   },
-  updated() {
-    this.getUpdate();
-  }, 
   methods: {
     itemClick(n){
-      let index=this.point+6-n;
-      if(this.currentPage==2)
-      index=this.total%7-1-n;
+      let index=this.total-n-1-(this.currentPage-1)*this.pageSize;
       this.$store.commit('getIndex', index);
       this.$router.push({
         path:"/articles/"+"article"+index+""
       });
-      this.isActive=true;
       },
-    getAmount(){
-        this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
-        this.total=result.data.article_count;
-        this.point=result.data.article_count;
-      })
-      
-    },
+ 
      handleCurrentChange: function(currentPage){
-       this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
         this.currentPage = currentPage;
-        let p=result.data.article_count-((currentPage)*7);
-        if(p<0) this.point=0;
-        else this.point=p;
-       })
+        this.start=this.total-(this.currentPage*this.pageSize)>0?this.total-(this.currentPage*this.pageSize):0;
+        this.end=this.total-((this.currentPage-1)*this.pageSize);
       },
-    getUpdate() {
-      for(let i=this.total-1; i>=0; i--){
-      this.axios.get("http://39.107.99.66:3000/catalog/articlesData").then(result=>{
-         this.items[i]=result.data[i]._id;
-        this.axios.get("http://39.107.99.66:3000/catalog/articlesData/"+this.items[i]+"").then(result=>{
-          this.title[i]=result.data.article.title;
-          this.message[i]=result.data.article.summary;
-          this.finals[i]=this.title[i]+":"+this.message[i];
-        console.log(result);
-      })
-      })
-      }
-    }
   }
 }
 </script>
 
 <style scoped>
-.item-text {
-  padding-top:10px;
-  padding-bottom: 5px;
-  background-color: #f5f5f5;
+/* .main {
+  width:90%;
+  padding-left: 5%;
+} */
+.text-right :hover {
+  background-color: whitesmoke;
 }
-@media screen and (max-width: 480px){
-.text-right {
-  min-height: 50px;
+.text-container {
   background-color: white;
-  border:1px solid rgba(227, 230, 235, 0.923);
-  margin-bottom:10px;
-  margin-left: 10px;
-  margin-right:10px;
-  line-height: 150%;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-bottom:1px solid rgb(191, 185, 185);
+  padding-left: 5px;
+  height: 3em;
+  line-height: 3em;
+  overflow: hidden;
 }
+a:hover {
+  text-decoration: underline;
+  color:rgb(10, 26, 26);
 }
-@media screen and (min-width: 480px) and (max-width: 1280px){
-.text-right {
-  min-height: 50px;
-  background-color: white;
-  border:1px solid rgba(227, 230, 235, 0.923);
-  margin-bottom:10px;
-  margin-left: 10px;
-  margin-right:10px;
-  line-height: 150%;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-}
-@media screen and (min-width: 1280px){
-.text-right {
-  height:50px;
-  background-color: white;
-  border:1px solid rgba(227, 230, 235, 0.923);
-  line-height: 50px;
-  margin-bottom: 10px;
-  overflow:hidden;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-}
-}
-.active {
-  color:grey;
+.text {
+  cursor: pointer;
 }
 .pageIndex {
     text-align: center;
+    padding-top: 20px;
   }
 </style>

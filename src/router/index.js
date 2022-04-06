@@ -12,24 +12,8 @@ const routes = [
     meta: {
       deepth:1,
       keepAlive: true //需要被缓存
-  }
+    }
   },
- /* {
-    path: '/category',
-    name: 'Category',
-    component: () => import('../views/category/Category.vue')
-  },
-  {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import('../views/profile/Profile.vue')
-  },
-  {
-    path: '/shopcart',
-    name: 'Shopcart',
-    component: () => import('../views/shopcart/Shopcart.vue')
-  },
-  */
   {
     path: '/articles/:id',
     name: 'ArticleContent',

@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     getAmount(){
-        this.axios.get("http://39.107.99.66:3000/catalog/data").then(result=>{
+        this.axios.get("/catalog/data").then(result=>{
         this.total=(result.data.article_count)/3;
         this.index=result.data.article_count-1;
         this.amount=result.data.article_count-1;
