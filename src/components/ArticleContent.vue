@@ -65,6 +65,9 @@ export default {
 </script>
 
 <style scoped>
+.page {
+      margin:0 18px;
+    }
 /* flex布局以及适配 */
   @media screen and (min-width: 1080px){
   .page {
@@ -88,7 +91,9 @@ export default {
     justify-content: flex-start;
   }
   }
-
+  .main {
+    margin-bottom: 20px;
+  }
   .title {
     text-align: center;
   }

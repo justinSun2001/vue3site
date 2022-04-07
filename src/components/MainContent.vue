@@ -85,7 +85,7 @@ export default {
     margin-right: 8px;
   }
   /* body 外边距为0，实现容器外边距 */
-  @media screen and (min-width: 1080px){
+  @media screen and (min-width: 960px){
     .page {
       display:flex;
       justify-content: space-between;

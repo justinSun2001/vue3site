@@ -11,6 +11,7 @@
     @current-change="handleCurrentChange"
     :current-page="currentPage"
     :page-size="pageSize"
+    pager-count="5"
     :total="total">
   </el-pagination>
 </div>
@@ -22,7 +23,7 @@ export default{
   name:'ArticlesContent',
   data () {
     return {
-      total:100,
+      total:1,
       currentPage:1,
       pageSize:10,
       start:1,

@@ -97,7 +97,7 @@ methods: {
             // const params = new URLSearchParams();
             // params.append('email',this.dynamicValidateForm.email);
             const qs = require('qs');
-            this.axios('/user/email', qs.stringify(this.dynamicValidateForm))
+            this.axios.post('/user/email', qs.stringify(this.dynamicValidateForm))
             .then((response)=>console.log(response));
 
             alert('submit!');

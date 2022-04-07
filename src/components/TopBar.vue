@@ -1,15 +1,12 @@
 <template>
-<!-- <div class="main">
-  <div class="logo"><img src="../assets/img/logo1.png"><div class="img-text">Blog</div></div>
-  <el-menu :default-active="$route.path" class="el-menu-nav" mode="horizontal" @select="handleSelect" text-color="black" active-text-color="#ffd04b" router>
-    <el-menu-item index="/contact">CONTACT</el-menu-item>
-    <el-menu-item index="/about">ABOUT</el-menu-item>
-    <el-menu-item index="/articles">ARTICLES</el-menu-item>
-    <el-menu-item index="/home">HOME</el-menu-item>
-  </el-menu>
-</div> -->
 <div class="container">
-  <div class="logo">
+  <div class="left">
+    <div class="user">
+      <img src='../assets/img/user.png'/>
+    </div>
+    <div class="icon">
+      <img src='../assets/img/search.png'/>
+    </div>
   </div>
   <ul class="nav">
     <li><router-link to="/home"> HOME </router-link></li>
@@ -40,19 +37,39 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 54px;
   background-color: #070707e5;
   font-size: 8px;
 }
-.logo {
-  color:white;
-  line-height: 50px;
+
+.left {
+  display: flex;
+  justify-content: flex-start;
 }
+  .user {
+    padding:12px 10px;
+  }
+  .user img {
+    width:30px;
+    height:30px;
+    cursor: pointer;
+  }
+  .icon {
+    padding:17px 10px;
+  }
+  .icon img {
+    width:20px;
+    height:20px;
+    cursor: pointer;
+  }
+
+
 .nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 .nav li {
-  line-height: 50px;
+  line-height: 54px;
   padding: 0px 10px; 
 }
 
