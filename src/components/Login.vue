@@ -46,15 +46,15 @@ methods: {
         this.$refs[formName].validate((valid) => {
           if (valid) {
             const qs = require('qs');
+            if(this.ruleForm.email=='admin'&&this.ruleForm.pass=='admin'){
+              this.$router.push({
+                path:"/home/"+'admin'
+              })
+            }
             this.axios.post('/user/login', qs.stringify(this.ruleForm))
             .then((response)=>{
               console.log(response);
-              if(this.ruleForm.email=='admin'&&this.ruleForm.pass=='admin'){
-                this.$router.push({
-                  path:"/home/"+'admin'
-                })
-                }
-              else if(this.ruleForm.email==response.data.email && this.ruleForm.pass==response.data.password){
+              if(this.ruleForm.email==response.data.email && this.ruleForm.pass==response.data.password){
                 this.$router.push({
                   path:"/home/"+response.data._id
                 })
