@@ -1,4 +1,5 @@
 <template>
+  <top-bar :inUse4="true"></top-bar>
   <div class="about">
     <h1>This is an about page!!!</h1>
     <side-content :amount="amount"></side-content>
@@ -6,8 +7,9 @@
 </template>
 <script>
 import SideContent from '../components/SideContent'
+import TopBar from '../components/TopBar.vue'
 export default {
-  components: { SideContent},
+  components: { SideContent,TopBar},
   data () {
   return {
     amount:1
@@ -28,6 +30,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  .about {
+    margin: 0 8px;
+  }
 </style>

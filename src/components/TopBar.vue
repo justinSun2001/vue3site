@@ -9,10 +9,10 @@
     </div> -->
   </div>
   <ul class="nav">
-    <li><a @click="getHome"> HOME </a></li>
-    <li><a @click="getArticles"> ARTICLES </a></li>
-    <li><a @click="getContact"> CONTACT </a></li>
-    <li><router-link to="/about"> ABOUT </router-link></li>
+    <li><a :class="{a1:inUse1}" @click="getHome"> HOME </a></li>
+    <li><a :class="{a1:inUse2}" @click="getArticles"> ARTICLES </a></li>
+    <li><a :class="{a1:inUse3}" @click="getContact"> CONTACT </a></li>
+    <li><a :class="{a1:inUse4}" @click="getAbout"> ABOUT </a></li>
   </ul>
 </div>
 
@@ -24,6 +24,7 @@
       return {
       };
     },
+    props:["inUse1","inUse2","inUse3","inUse4"],
     methods: {
       getHome(){
         this.$router.push({
@@ -32,12 +33,17 @@
       },
       getArticles(){
         this.$router.push({
-          path:"/articles/"+this.$store.state.userToken
+          path:"/articleList/"+this.$store.state.userToken
         });
       },
       getContact(){
         this.$router.push({
           path:"/contact/"+this.$store.state.userToken
+        });
+      },
+      getAbout(){
+        this.$router.push({
+          path:"/about/"+this.$store.state.userToken
         });
       },
     }
@@ -84,12 +90,15 @@
   line-height: 54px;
   padding: 0px 10px; 
 }
+.a1 {
+  border-bottom: 2px solid red;
+}
 
 /* 消除 router-link默认样式 同时添加按钮动画*/
-.router-link-active {
+/* .router-link-active {
   text-decoration: none;
   color: white;
-}
+} */
 a {
   text-decoration: none;
   color: white; 

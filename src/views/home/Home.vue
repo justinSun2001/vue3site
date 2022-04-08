@@ -1,5 +1,5 @@
 <template>
-  <top-bar></top-bar>
+  <top-bar :inUse1='true'></top-bar>
   <head-content></head-content>
   <main-content></main-content>
 </template>
