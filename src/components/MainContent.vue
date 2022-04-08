@@ -84,6 +84,9 @@ export default {
     margin-left: 8px;
     margin-right: 8px;
   }
+  .pageIndex {
+    text-align: center;
+  }
   /* body 外边距为0，实现容器外边距 */
   @media screen and (min-width: 960px){
     .page {
@@ -94,9 +97,8 @@ export default {
       margin-left:50px;
     }
   }
-  .pageIndex {
-    text-align: center;
-  }
+
+
   /* 修改el-divider的样式 */
   .el-divider--horizontal{
      margin: 8px 0;

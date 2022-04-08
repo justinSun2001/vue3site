@@ -4,14 +4,14 @@
     <div class="user">
       <img src='../assets/img/user.png'/>
     </div>
-    <div class="icon">
+    <!-- <div class="icon">
       <img src='../assets/img/search.png'/>
-    </div>
+    </div> -->
   </div>
   <ul class="nav">
-    <li><router-link to="/home"> HOME </router-link></li>
-    <li><router-link to="/articles"> ARTICLES </router-link></li>
-    <li><router-link to="/contact"> CONTACT </router-link></li>
+    <li><a @click="getHome"> HOME </a></li>
+    <li><a @click="getArticles"> ARTICLES </a></li>
+    <li><a @click="getContact"> CONTACT </a></li>
     <li><router-link to="/about"> ABOUT </router-link></li>
   </ul>
 </div>
@@ -20,15 +20,27 @@
 
 <script>
   export default {
-    // data() {
-    //   return {
-    //   };
-    // },
-    // methods: {
-    //   handleSelect(key, keyPath) {
-    //     console.log(key, keyPath);
-    //   }
-    // }
+    data() {
+      return {
+      };
+    },
+    methods: {
+      getHome(){
+        this.$router.push({
+          path:"/home/"+this.$store.state.userToken
+        });
+      },
+      getArticles(){
+        this.$router.push({
+          path:"/articles/"+this.$store.state.userToken
+        });
+      },
+      getContact(){
+        this.$router.push({
+          path:"/contact/"+this.$store.state.userToken
+        });
+      },
+    }
   }
 </script>
 
@@ -82,6 +94,7 @@ a {
   text-decoration: none;
   color: white; 
   font-weight: bold;
+  cursor: pointer;
 }
 a:hover {
   color: rgb(141, 138, 141);

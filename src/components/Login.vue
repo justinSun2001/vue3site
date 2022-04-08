@@ -18,6 +18,7 @@
 </template>
 
 <script>
+
 export default {
   data(){
     var validatePass = (rule,value,callback) => {
@@ -47,19 +48,21 @@ methods: {
           if (valid) {
             const qs = require('qs');
             if(this.ruleForm.email=='admin'&&this.ruleForm.pass=='admin'){
+              this.$store.commit('setUserToken', 'admin')
               this.$router.push({
-                path:"/home/"+'admin'
+                path:"/home/"+this.$store.state.userToken
               })
             }
             this.axios.post('/user/login', qs.stringify(this.ruleForm))
             .then((response)=>{
               console.log(response);
               if(this.ruleForm.email==response.data.email && this.ruleForm.pass==response.data.password){
+                this.$store.commit('setUserToken', response.data._id)
                 this.$router.push({
-                  path:"/home/"+response.data._id
+                  path:"/home/"+this.$store.state.userToken
                 })
               }
-              else {alert('登录失败');}
+              else {alert('密码错误');}
               })
           } else {
             alert('error!!');

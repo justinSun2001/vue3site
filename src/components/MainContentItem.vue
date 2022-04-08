@@ -73,7 +73,7 @@ export default {
     imgClick(){
       this.$store.commit('getIndex', this.index);
       this.$router.push({
-        path:"/articles/"+"article"+this.index+""
+        path:"/articles/"+"article"+this.$store.state.articleIndex+""
       })
     }
   }

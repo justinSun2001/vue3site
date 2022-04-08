@@ -136,6 +136,7 @@ methods: {
   }
   .side-img {
     display:flex;
+    flex-wrap: wrap;
     padding-left: 30px;
     padding-top: 20px;
   }

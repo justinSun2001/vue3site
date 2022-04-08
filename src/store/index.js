@@ -2,15 +2,15 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    likes:0,
-    pageIndex:1
+    articleIndex:1,
+    userToken:''
   },
   mutations: {
-    increment (state) {
-      state.likes++
-    },
     getIndex (state, index) {
-      state.pageIndex=index
+      state.articleIndex=index
+    },
+    setUserToken (state, token) {
+      state.userToken = token;
     }
   },
   actions: {
