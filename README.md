@@ -23,3 +23,7 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 DEBUG=myapp:* npm run devstart
+
+### 登陆默认用户
+账号 admin
+密码 admin
