@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1 Title: #{article.title}
+  
+  p #[strong Author:] 
+    a(href=article.author.url) #{article.author.name}
+  p #[strong Summary:] #{article.summary}
+  p #[strong Date:] #{article.date}
+  p #[strong Genre:] 
+    each val, index in article.genre
+      a(href=val.url) #{val.name}
+      if index < article.genre.length - 1
+        |, 
+  
+  //- div(style='margin-left:20px;margin-top:20px')
+  //-   h4 Copies
+    
+  //-   each val in article_instances
+  //-     hr
+  //-     if val.status=='Available'
+  //-       p.text-success #{val.status}
+  //-     else if val.status=='Maintenance'
+  //-       p.text-danger #{val.status}
+  //-     else
+  //-       p.text-warning #{val.status} 
+  //-     p #[strong Imprint:] #{val.imprint}
+  //-     if val.status!='Available'
+  //-       p #[strong Due back:] #{val.due_back}
+  //-     p #[strong Id:] 
+  //-       a(href=val.url) #{val._id}
+ 
+  //-   else
+  //-     p There are no copies of this article in the library.
+      
+  hr
+  p
+    a(href=article.url+'/delete') Delete article
+  p
+    a(href=article.url+'/update') Update article

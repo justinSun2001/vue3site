@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  h1= title
+  -
+      function get(game_time){
+        var year = game_time.getFullYear()+'-';
+        var month = (game_time.getMonth() + 1 < 10 ? '0' + (game_time.getMonth() + 1) : game_time.getMonth() + 1) + '-';
+        var day = (game_time.getDate() < 10 ? '0' + (game_time.getDate()) : game_time.getDate());
+        return year+month+day;
+      }
+      var date = new Date();
+      var date1 = get(date);
+      if(article!==undefined){
+        var game_time=new Date(article.date);
+        var date2 = get(game_time);
+      }
+  form(method='POST' action='' enctype='multipart/form-data')
+    div.form-group
+      label(for='title') Title:
+      input#title.form-control(type='text', placeholder='Name of article' name='title' required='true' value=(undefined===article ? '' : article.title) )
+    div.form-group
+      label(for='author') Author:
+      select#author.form-control(type='select', placeholder='Select author' name='author' required='true' )
+        - authors.sort(function(a, b) {let textA = a.family_name.toUpperCase(); let textB = b.family_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for author in authors
+          if article
+            option(value=author._id selected=(author._id.toString()===article.author._id.toString() ? 'selected' : false) ) #{author.name}
+          else
+            option(value=author._id) #{author.name}
+    div.form-group
+      label(for='summary') Summary:
+      input#summary.form-control(type='textarea', placeholder='Summary' name='summary' value=(undefined===article ? '' : article.summary) required='true')
+    div.form-group
+      label(for='text') Text:
+      textarea#text.form-control(placeholder='Text' name="text", cols="30", rows="10" required='true')
+    div.form-group
+      label(for='date') Date:
+      input#date.form-control(type='date', name='date' value=(undefined===article ? date1 : date2) required='true') 
+    div.form-group
+      label Genre:
+      div
+        for genre in genres
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+            label(for=genre._id) #{genre.name}
+    input(type='file' name='pics' )
+    p   
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg
