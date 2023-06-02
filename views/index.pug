@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST' action='')
+    input(type='text' name='teamName' value='')
+    input(type='submit' value='搜索')
+
+  p 本数据库暂时含有以下记录：
+  ul
+      li #[strong 新闻:] #{news}
+      li #[strong 球队:] #{team}
+      li #[strong 球员:] #{player}

@@ -1,0 +1,93 @@
+extends layout
+
+block content
+  h1=title
+  h2=player.name
+  -
+      function dateFormat(game_time){
+        var year = game_time.getFullYear()+'-';
+        var month = (game_time.getMonth() + 1 < 10 ? '0' + (game_time.getMonth() + 1) : game_time.getMonth() + 1) + '-';
+        var day = (game_time.getDate() < 10 ? '0' + (game_time.getDate()) : game_time.getDate());
+        return year+month+day;
+      }
+      var date = new Date();//当前时间
+      var date1 = dateFormat(date);
+      if(game!==undefined){
+        var game_time=new Date(game.game_time);
+        var date2 = dateFormat(game_time);
+      }//更改日期格式
+
+      function saiji(league_time){
+        var year = league_time.getFullYear();
+        var month = league_time.getMonth()+1;
+        if(month<8){
+          year=year-1;
+        }
+        return year-2000;
+      }
+      var team_initial_number = saiji(date);//获取赛季
+
+      function changci(){
+        var game_initial_number=1;
+        var i;
+        for(i=0; i<player.game.length; i++){
+          if(player.game[i].team_number==saiji(date)){
+            game_initial_number++;
+          }
+        }
+        return game_initial_number;
+      }//获取当赛季场次
+  form(method='POST' action='')
+    div.form-group
+      //- label(for='game_number') 场次:
+      //- input.col-lg-2(type='number', placeholder='必填' name='game_number' required='true' value=(undefined===game ? changci() : game.game_number))
+      //- label(for='team_number') 赛季:
+      //- input.col-lg-2(type='number', placeholder='必填' name='team_number' required='true' value=(undefined===game ? saiji(date) : game.team_number))
+      //- <br><br>
+      
+      label(for='point') 得分:
+      input.col-lg-2(type='number', placeholder='必填' name='point' required='true' value=(undefined===game ? '' : game.point))
+      label(for='rebound') 篮板:
+      input.col-lg-2(type='number', placeholder='必填' name='rebound' required='true' value=(undefined===game ? '' : game.rebound))
+      label(for='assist') 助攻:
+      input.col-lg-2(type='number', placeholder='必填' name='assist' required='true' value=(undefined===game ? '' : game.assist))
+      <br><br>
+      
+      label(for='shot_made') 投篮:
+      input.col-lg-2(type='number', placeholder='必填' name='shot_made' required='true' value=(undefined===game ? '' : game.shot_made))
+      label(for='shot_got') 投篮命中:
+      input.col-lg-2(type='number', placeholder='必填' name='shot_got' required='true' value=(undefined===game ? '' : game.shot_got))
+      <br><br>
+      
+      label(for='three_made') 三分出手:
+      input.col-lg-2(type='number', placeholder='必填' name='three_made' required='true' value=(undefined===game ? '' : game.three_made))
+      label(for='three_got') 三分命中:
+      input.col-lg-2(type='number', placeholder='必填' name='three_got' required='true' value=(undefined===game ? '' : game.three_got))
+      <br><br>
+      
+      label(for='freethrow_made') 罚球:
+      input.col-lg-2(type='number', placeholder='必填' name='freethrow_made' required='true' value=(undefined===game ? '' : game.freethrow_made))
+      label(for='freethrow_got') 罚球命中:
+      input.col-lg-2(type='number', placeholder='必填' name='freethrow_got' required='true' value=(undefined===game ? '' : game.freethrow_got))
+      <br><br>
+
+      label(for='steal') 抢断:
+      input.col-lg-2(type='number', placeholder='必填' name='steal' required='true' value=(undefined===game ? '' : game.steal))
+      label(for='block') 盖帽:
+      input.col-lg-2(type='number', placeholder='必填' name='block' required='true' value=(undefined===game ? '' : game.block))
+      label(for='turnover') 失误:
+      input.col-lg-2(type='number', placeholder='必填' name='turnover' required='true' value=(undefined===game ? '' : game.turnover))
+      label(for='foul') 犯规:
+      input.col-lg-2(type='number', placeholder='必填' name='foul' required='true' value=(undefined===game ? '' : game.foul))
+      <br><br>
+      
+      label(for='game_time_min') 上场时间:
+      input.col-lg-3(type='string', placeholder='必填' name='game_time_min' required='true' value=(undefined===game ? '' : game.game_time_min) )
+      //- label(for='game_time') 比赛日期:
+      //- input.col-lg-2(type='date', name='game_time' required='true' value=(undefined===game ? date1 : date2))
+    button.btn.btn-primary(type='submit') 提交
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

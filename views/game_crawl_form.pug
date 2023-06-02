@@ -1,0 +1,126 @@
+extends layout
+
+block content
+    h1=title
+    h2=gameDate 
+    h3 #{gameData[2]}#{gameData[0]}---#{gameData[3]}#{gameData[1]}
+  
+    table 
+      tr 
+        th 球员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        th 位置&nbsp;&nbsp;
+        th 时间&nbsp;&nbsp;
+        th 投篮&nbsp;&nbsp;&nbsp;&nbsp;
+        th 3分  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        th 罚球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        th 犯规&nbsp;
+        th 抢断&nbsp;
+        th 失误&nbsp;
+        th 封盖&nbsp;
+        th 得分&nbsp;
+        th 篮板&nbsp;
+        th 助攻
+        th 正负值
+    - for(var j=1;j<100;j++)
+      - if(playerData[j]=='首发')
+        - for(var k=0;k<5;k++)
+          form(action="", method="post")
+            input(type='text', name='cname' required='true' size=12 value=playerData[j+15+16*k].replace(/[-\·]/,' '))
+            input(type='text', name='position' required='true' size=3 value=playerData[j+16+16*k])
+            input(type='text', name='game_time_min' required='true' size=3 value=playerData[j+17+16*k])
+            input(type='text', name='shot_percent' required='true' size=5 value=playerData[j+18+16*k])
+            input(type='text', name='three_percent' required='true' size=5 value=playerData[j+19+16*k])  
+            input(type='text', name='freethrow_percent' required='true' size=5 value=playerData[j+20+16*k]) 
+            input(type='text', name='foul' required='true' size=3 value=playerData[j+25+16*k])
+            input(type='text', name='steal' required='true' size=3 value=playerData[j+26+16*k])
+            input(type='text', name='turnover' required='true' size=3 value=playerData[j+27+16*k])
+            input(type='text', name='block' required='true' size=3 value=playerData[j+28+16*k])
+            input(type='text', name='point' required='true' size=3 value=playerData[j+29+16*k])
+            input(type='text', name='rebound' required='true' size=3 value=playerData[j+23+16*k])
+            input(type='text', name='assist' required='true' size=3 value=playerData[j+24+16*k])
+            input(type='text', name='zhengfuzhi' required='true' size=3 value=playerData[j+30+16*k])
+            input(type='text', name='game_time' required='true' size=1 value=gameDate.replace('开赛：',''))
+            button(type='submit') 提交
+            br
+        br
+        - for(k=5;k<10;k++)
+          form(action="", method="post")
+            input(type='text', name='cname' required='true' size=12 value=playerData[j+15+16*k+15].replace(/[-\·]/,' '))
+            input(type='text', name='position' required='true' size=3 value=playerData[j+16+16*k+15])
+            input(type='text', name='game_time_min' required='true' size=3 value=playerData[j+17+16*k+15])
+            input(type='text', name='shot_percent' required='true' size=5 value=playerData[j+18+16*k+15])
+            input(type='text', name='three_percent' required='true' size=5 value=playerData[j+19+16*k+15])  
+            input(type='text', name='freethrow_percent' required='true' size=5 value=playerData[j+20+16*k+15])
+            input(type='text', name='foul' required='true' size=3 value=playerData[j+25+16*k+15])
+            input(type='text', name='steal' required='true' size=3 value=playerData[j+26+16*k+15])
+            input(type='text', name='turnover' required='true' size=3 value=playerData[j+27+16*k+15])
+            input(type='text', name='block' required='true' size=3 value=playerData[j+28+16*k+15])
+            input(type='text', name='point' required='true' size=3 value=playerData[j+29+16*k+15])
+            input(type='text', name='rebound' required='true' size=3 value=playerData[j+23+16*k+15])
+            input(type='text', name='assist' required='true' size=3 value=playerData[j+24+16*k+15])
+            input(type='text', name='zhengfuzhi' required='true' size=3 value=playerData[j+30+16*k+15])
+            input(type='text', name='game_time' required='true' size=1 value=gameDate.replace('开赛：',''))
+            button(type='submit') 提交
+            br 
+    table 
+      tr 
+        th 球员&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        th 位置&nbsp;&nbsp;
+        th 时间&nbsp;&nbsp;
+        th 投篮&nbsp;&nbsp;&nbsp;&nbsp;
+        th 3分  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        th 罚球&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        th 犯规&nbsp;
+        th 抢断&nbsp;
+        th 失误&nbsp;
+        th 封盖&nbsp;
+        th 得分&nbsp;
+        th 篮板&nbsp;
+        th 助攻
+        th 正负值
+    - for(var j=100;j<playerData.length;j++)
+      - if(playerData[j]=='首发')
+        - for(var k=0;k<5;k++)
+          form(action="", method="post")
+            input(type='text', name='cname' required='true' size=12 value=playerData[j+15+16*k].replace(/[-\·]/,' '))
+            input(type='text', name='position' required='true' size=3 value=playerData[j+16+16*k])
+            input(type='text', name='game_time_min' required='true' size=3 value=playerData[j+17+16*k])
+            input(type='text', name='shot_percent' required='true' size=5 value=playerData[j+18+16*k])
+            input(type='text', name='three_percent' required='true' size=5 value=playerData[j+19+16*k])  
+            input(type='text', name='freethrow_percent' required='true' size=5 value=playerData[j+20+16*k])
+            input(type='text', name='foul' required='true' size=3 value=playerData[j+25+16*k])
+            input(type='text', name='steal' required='true' size=3 value=playerData[j+26+16*k])
+            input(type='text', name='turnover' required='true' size=3 value=playerData[j+27+16*k])
+            input(type='text', name='block' required='true' size=3 value=playerData[j+28+16*k])
+            input(type='text', name='point' required='true' size=3 value=playerData[j+29+16*k])
+            input(type='text', name='rebound' required='true' size=3 value=playerData[j+23+16*k])
+            input(type='text', name='assist' required='true' size=3 value=playerData[j+24+16*k])
+            input(type='text', name='zhengfuzhi' required='true' size=3 value=playerData[j+30+16*k])
+            input(type='text', name='game_time' required='true' size=1 value=gameDate.replace('开赛：',''))
+            button(type='submit') 提交
+            br
+        br
+        - for(k=5;k<10;k++)
+          form(action="", method="post")
+            input(type='text', name='cname' required='true' size=12 value=playerData[j+15+16*k+15].replace(/[-\·]/,' '))
+            input(type='text', name='position' required='true' size=3 value=playerData[j+16+16*k+15])
+            input(type='text', name='game_time_min' required='true' size=3 value=playerData[j+17+16*k+15])
+            input(type='text', name='shot_percent' required='true' size=5 value=playerData[j+18+16*k+15])
+            input(type='text', name='three_percent' required='true' size=5 value=playerData[j+19+16*k+15])  
+            input(type='text', name='freethrow_percent' required='true' size=5 value=playerData[j+20+16*k+15])
+            input(type='text', name='foul' required='true' size=3 value=playerData[j+25+16*k+15])
+            input(type='text', name='steal' required='true' size=3 value=playerData[j+26+16*k+15])
+            input(type='text', name='turnover' required='true' size=3 value=playerData[j+27+16*k+15])
+            input(type='text', name='block' required='true' size=3 value=playerData[j+28+16*k+15])
+            input(type='text', name='point' required='true' size=3 value=playerData[j+29+16*k+15])
+            input(type='text', name='rebound' required='true' size=3 value=playerData[j+23+16*k+15])
+            input(type='text', name='assist' required='true' size=3 value=playerData[j+24+16*k+15])
+            input(type='text', name='zhengfuzhi' required='true' size=3 value=playerData[j+30+16*k+15])
+            input(type='text', name='game_time' required='true' size=1 value=gameDate.replace('开赛：',''))
+            button(type='submit') 提交
+            br        
+    if errors 
+      ul
+        for error in errors
+          li!= error.msg
+        

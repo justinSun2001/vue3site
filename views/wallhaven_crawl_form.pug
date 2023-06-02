@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1=title
+  h2 #{page}-#{urlAmount}
+
+  - for(var i=0;i<urlAmount;i++)
+    form(action="http://localhost:3001/nba/wallhaven/upload", method="POST")
+      input(type="text", name="url", value=urlData[i])
+      input(type="text", name="name", value=urlData[i].slice(-4)+i)
+      button(type='submit') 提交
+    br
+
+  if errors 
+      ul
+        for error in errors
+          li!= error.msg
+         

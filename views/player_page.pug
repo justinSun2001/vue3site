@@ -1,0 +1,64 @@
+extends layout
+
+block content
+
+  h1 球员: #{player.name}
+  
+  div(style='margin-left:20px;margin-top:20px')
+      -
+        function dateFormat(i){
+          var year = i .getFullYear()+'-';
+          var month = (i .getMonth() + 1 < 10 ? '0' + (i .getMonth() + 1) : i .getMonth() + 1) + '-';
+          var day = (i .getDate() < 10 ? '0' + (i .getDate()) : i .getDate());
+          var date = year+month+day;
+          return date;
+        }
+        var reverse_player_game = player.game.reverse();
+      <p class="text-left">#{player.number}号</p>
+      <p class="text-left">年龄：#{player.age}岁</p>
+      <p class="text-left">身高：#{player.height}cm</p>
+      <p class="text-left">体重：#{player.weight}kg</p>
+      p.text-left='生日：'+dateFormat(player.date_of_birth)
+      <p class="text-left">选秀：#{player.pick}</p>
+      <p class="text-left">所属球队：
+      a(href="/nba/team/"+player.team._id) #{player.team.cname}</p>
+      //- p 
+      //-   a(href=player.url+'/createGame') 添加一场新的比赛记录
+
+      <table>
+        <tr>
+          <th>得分</th>
+          <th>篮板</th>
+          <th>助攻</th>
+          <th>场次</th>
+          <th>比赛日期</th>
+        </tr>
+        each game in reverse_player_game
+          <tr>
+            <td align="center">#{game.point}</td>
+            <td align="center">#{game.rebound}</td>
+            <td align="center">#{game.assist}</td>
+            <td align="center">#{reverse_player_game.length-reverse_player_game.indexOf(game)}</td>
+            <td>#{game.game_time}</td>
+          </tr>
+      </table>
+      <br><br>
+      h6 得分 篮板  助攻  场次
+      each game in reverse_player_game
+        <ul class="list-inline">
+          <li>#{game.point}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{game.rebound}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{game.assist}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#{reverse_player_game.length-reverse_player_game.indexOf(game)}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a(href=player.url+'/update/'+game._id) 更新这条数据&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              a(href=player.url+'/delete/'+game._id) 删除这条数据
+              //- <li class="text-left">#{game.game_time}</li>
+          </li>
+        </ul>
+ 
+        
+
+
+      
+  hr
+  p
+    a(href=player.url+'/delete') Delete player
+  p
+    a(href=player.url+'/update') Update player

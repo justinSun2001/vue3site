@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1=title
+
+  -
+      function get(game_time){
+        var year = game_time.getFullYear()+'-';
+        var month = (game_time.getMonth() + 1 < 10 ? '0' + (game_time.getMonth() + 1) : game_time.getMonth() + 1) + '-';
+        var day = (game_time.getDate() < 10 ? '0' + (game_time.getDate()) : game_time.getDate());
+        return year+month+day;
+      }
+      var date = new Date();
+      var date1 = get(date);
+      if(news!==undefined){
+        var game_time=new Date(news.news_date);
+        var date2 = get(game_time);
+      }
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='news_content') 新闻内容:
+      input.form-control(type='textarea', placeholder='简述' name='news_content' value=(undefined===news ? '' : news.news_content) required='true')
+    div.form-group
+      label(for='news_date') 日期:
+      input.form-control(type='date', name='news_date' value=(undefined===news ? date1 : date2) required='true') 
+    button.btn.btn-primary(type='submit') 提交
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

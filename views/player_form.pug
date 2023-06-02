@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  h1=title
+  -
+    var honor='';
+    var intro='';
+    if(player!==undefined){
+    var year = player.date_of_birth.getFullYear()+'-';
+    var month = (player.date_of_birth.getMonth() + 1 < 10 ? '0' + (player.date_of_birth.getMonth() + 1) : player.date_of_birth.getMonth() + 1) + '-';
+    var day = (player.date_of_birth.getDate()  < 10 ? '0' + (player.date_of_birth.getDate()) : player.date_of_birth.getDate());
+    var date = year+month+day;
+
+    honor = player.honor;
+    intro = player.intro;
+    }
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') First Name:
+      input.col-lg-2(type='text', placeholder='必填' name='first_name' required='true' value=(undefined===player ? '' : player.first_name))
+      label(for='family_name') Family Name:
+      input.col-lg-2(type='text', placeholder='必填' name='family_name' required='true' value=(undefined===player ? '' : player.family_name))
+      label(for='cname') cName:
+      input.col-lg-2(type='text', placeholder='中文名称' name='cname' value=(undefined===player ? '' : player.cname))
+      label(for='date_of_birth') 出生日期:
+      input.col-lg-2(type='date', name='date_of_birth' required='true' value=(undefined===player ? '' : date))
+      <br><br>
+      laber(for='height') 身高:
+      input.col-lg-2(type='number',placeholder='身高' name='height' step='0.1' value=(undefined===player ? '' : player.height))
+      laber(for='weight') 体重:
+      input.col-lg-2(type='number',placeholder='体重' name='weight' step='0.1' value=(undefined===player ? '' : player.weight))
+      laber(for='age') 年龄:
+      input.col-lg-2(type='number',placeholder='年龄' name='age' value=(undefined===player ? '' : player.age))
+      laber(for='number') 球衣号码:
+      input.col-lg-2(type='number',placeholder='球衣号码' name='number' value=(undefined===player ? '' : player.number))
+      <br><br>
+      label(for='pick') 选秀顺位:
+      input.form-control(type='text', placeholder='选秀顺位' name='pick' value=(undefined===player ? '' : player.pick))
+      <br>
+      label(for='honor') 生涯荣誉:
+      textarea.form-control(placeholder='生涯荣誉' name='honor' cols='30' rows='5')=honor
+      <br>
+      label(for='intro') 简介:
+      textarea.form-control(placeholder='球员简介' name='intro' cols='30' rows='5')=intro
+    div.form-group
+      label(for='team') 所属球队:
+      select.form-control(type='select', placeholder='选择球队' name='team' required='true' )
+        for team in teams
+          if player && player.team
+            option(value=team._id selected=(team._id.toString()===player.team._id.toString() ? 'selected' : false) ) #{team.name}
+          else
+            option(value=team._id) #{team.name}  
+    button.btn.btn-primary(type='submit') 提交
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

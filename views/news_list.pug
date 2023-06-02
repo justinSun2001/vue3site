@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  -
+    var reverse_news_list=news_list.reverse()
+  ul
+  each news in reverse_news_list
+    li #{news.news_content}
+    br
+
+  else
+    li 无

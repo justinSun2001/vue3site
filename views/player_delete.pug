@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  h1 #{title}
+  h2 #{player.name}
+    form(method='POST' action='')
+      div.form-group
+        input#id.form-control(type='hidden',name='id', required='true', value=player._id )
+
+      button.btn.btn-primary(type='submit') 删除

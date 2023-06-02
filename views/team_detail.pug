@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  h1 #{team.name}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 球员
+    
+    dl
+    each player in players
+      dt 
+        a(href=player.url) #{player.cname} #{player.number}
+      p #{player.family_name}
+      //- dd 
+      //-   a(href=player.url+'/createGame') 添加一场新的比赛记录
+
+    else
+      p This team has no players.
+      
+  //- hr
+  //- p
+  //-   a(href=team.url+'/delete') 删除球队
+  //- p
+  //-   a(href=team.url+'/update') 更新球队

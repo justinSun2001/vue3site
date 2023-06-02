@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    label(for='str') 输入链接
+    input.form-control(type='text' name='str' required='true')
+    button.btn.btn-primary(type='submit') 提交
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

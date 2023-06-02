@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  form(method='POST' action='')
+    input(type='text' name='playerName' value='')
+    input(type='submit' value='搜索')
+  ul
+  each player in player_list
+    li 
+      a(href=player.url) #{player.name} 
+      //- <br>
+      //- a(href=player.url+'/update') Update player
+      //- <br>
+      //- a(href=player.url+'/delete') Delete player
+
+  else
+    li There are no players.

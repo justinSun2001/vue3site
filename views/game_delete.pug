@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 确定删除以下数据吗？
+  h3  得分: #{game.point}
+  h3  篮板: #{game.rebound}
+  h3  助攻: #{game.assist} 
+  h3  比赛日期: #{game.game_time} 
+
+  form(method='POST' action='')
+      div.form-group
+        input#id.form-control(type='hidden',name='id', required='true', value=game._id )
+
+      button.btn.btn-primary(type='submit') 删除
