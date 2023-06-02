@@ -57,7 +57,7 @@
 export default {
 name:"SideContent",
 props: {
-  amount:Number
+  amount:Number,
 },
 data() {
       return {
@@ -67,7 +67,7 @@ data() {
         text1:'',
         text2:'',
         text3:'',
-        text4:''
+        text4:'',
       };
     },
 created () {
@@ -136,7 +136,7 @@ methods: {
   }
   .side-img {
     display:flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding-left: 30px;
     padding-top: 20px;
   }

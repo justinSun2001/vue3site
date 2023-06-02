@@ -50,7 +50,7 @@ methods: {
             if(this.ruleForm.email=='admin'&&this.ruleForm.pass=='admin'){
               this.$store.commit('setUserToken', 'admin')
               this.$router.push({
-                path:"/home/"+this.$store.state.userToken
+                path:"/home/1"
               })
             }
             this.axios.post('/user/login', qs.stringify(this.ruleForm))
@@ -59,7 +59,7 @@ methods: {
               if(this.ruleForm.email==response.data.email && this.ruleForm.pass==response.data.password){
                 this.$store.commit('setUserToken', response.data._id)
                 this.$router.push({
-                  path:"/home/"+this.$store.state.userToken
+                  path:"/home/1"
                 })
               }
               else {alert('密码错误');}

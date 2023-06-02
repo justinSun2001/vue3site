@@ -40,30 +40,39 @@ export default {
       title:'无',
       message:'',
       date:'',
-      url:''
+      url:'',
+      id:''
     }
   },
   created(){
-    this.axios.get("/catalog/articlesData").then((result)=>{
-        let id=result.data[this.index]._id;
-        this.axios.get("/catalog/articlesData/"+id+"").then((result)=>{
+    this.axios({
+      method: 'get',
+      url: '/catalog/articlesData',
+      headers: {'Cache-control': 'max-age=200'}
+    }).then((result)=>{
+        this.id=result.data[this.index]._id;
+        this.axios.get("/catalog/articlesData/"+this.id+"").then((result)=>{
           this.title=result.data.article.title;
           this.message=result.data.article.summary;
           this.date=result.data.article.date;
-          this.url=require('../assets/img/'+'item'+(this.index+1)+'.png');
+          this.url='http://localhost:3000'+result.data.article.path;
         console.log(result);
       })
       })
   },
   updated () {
-    this.axios.get("/catalog/articlesData").then((result)=>{
+    this.axios({
+      method: 'get',
+      url: '/catalog/articlesData',
+      headers: {'Cache-control': 'max-age=200'}
+    }).then((result)=>{
         if(this.index>=0){
-          let id=result.data[this.index]._id;
-          this.axios.get("/catalog/articlesData/"+id+"").then((result)=>{
+          this.id=result.data[this.index]._id;
+          this.axios.get("/catalog/articlesData/"+this.id+"").then((result)=>{
           this.title=result.data.article.title;
           this.message=result.data.article.summary;
           this.date=result.data.article.date;
-          this.url=require('../assets/img/'+'item'+(this.index+1)+'.png');
+          this.url='http://localhost:3000'+result.data.article.path;
         console.log(result);
       })
         }
@@ -71,9 +80,8 @@ export default {
   },
   methods: {
     imgClick(){
-      this.$store.commit('getIndex', this.index);
       this.$router.push({
-        path:"/articles/"+"article"+this.$store.state.articleIndex+""
+        path:"/articles/"+this.id,
       })
     }
   }
@@ -106,6 +114,7 @@ export default {
     font-size: 20px;
   }
   .item-text {
+    font-size:15px;
     color:rgb(234, 59, 24);
   }
   .state {
@@ -132,18 +141,19 @@ export default {
     margin-left: 10px;
   }
   .item-title {
-    font-size: 15px;
+    font-size: 10px;
   }
   .item-text {
-    font-size: 10px;
+    font-size: 8px;
     color:rgb(234, 59, 24);
+    
   }
   .state {
     display:flex;
     justify-content: space-between;
   }
   .item-date {
-    font-size: 10px;
+    font-size: 8px;
     color:rgb(187, 177, 168);
   }
   }

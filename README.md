@@ -22,4 +22,5 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-DEBUG=myapp:* npm run devstart
+DEBUG=myapp:* npm run devstart  端口3000
+DEBUG=pServer:* npm run devstart 端口3001

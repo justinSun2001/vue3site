@@ -11,7 +11,7 @@ const routes = [
     component: () => import('../views/Welcome.vue')
   },
   {
-    path: '/home/:id*',
+    path: '/home/:id',
     name: 'Home',
     component: () => import('../views/home/Home.vue'),
     meta: {
@@ -20,7 +20,7 @@ const routes = [
     }
   },
   {
-    path: '/articles/:id*',
+    path: '/articles/:id',
     name: 'ArticleContent',
     component: () => import('../components/ArticleContent.vue'),
     props: true,
@@ -30,7 +30,7 @@ const routes = [
   }
   },
   {
-    path: '/articleList/:id*',
+    path: '/articleList/:id',
     name: 'Articles',
     component: () => import('../views/article/Articles.vue'),
     meta: {
@@ -43,11 +43,11 @@ const routes = [
     name: 'About',
     component: () => import('../views/About.vue')
   },
-  {
-    path: '/contact/:id*',
-    name: 'Contact',
-    component: () => import('../views/Contact.vue')
-  },
+  /* {
+    path: '/nbadata/:id*',
+    name: 'Nbadata',
+    component: () => import('../views/NBAData.vue')
+  }, */
 ]
 
 const router = createRouter({

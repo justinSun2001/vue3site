@@ -11,7 +11,6 @@
     @current-change="handleCurrentChange"
     :current-page="currentPage"
     :page-size="pageSize"
-    pager-count="5"
     :total="total">
   </el-pagination>
 </div>
@@ -21,32 +20,29 @@
 
 export default{
   name:'ArticlesContent',
+  props:{
+    currentPage:Number,
+  },
   data () {
     return {
-      total:1,
-      currentPage:1,
-      pageSize:10,
-      start:1,
-      end:1,
+      total:0,
+      pageSize:15,
+      start:0,
+      end:0,
       message:[],
-      // title:[],
-      // finals:[],
       items:[],
     }
   },
-  
   created () {
       this.axios.get("/catalog/data").then((result)=>{
       this.total=result.data.article_count;
-      this.start=this.total-(this.currentPage*this.pageSize)>0?this.total-(this.currentPage*this.pageSize):0;
+      this.start=this.total-(this.currentPage*this.pageSize)>0?this.total-(this.currentPage*this.pageSize)-1:0;
       this.end=this.total-((this.currentPage-1)*this.pageSize);
         for(let i=this.total-1; i>=0; i--){
         this.axios.get("/catalog/articlesData").then((result)=>{
           this.items[i]=result.data[i]._id;
-          this.axios.get("/catalog/articlesData/"+this.items[i]+"").then(result=>{
-            // this.title[i]=result.data.article.title;
+          this.axios.get("/catalog/articlesData/"+this.items[i]).then(result=>{
             this.message[i]=result.data.article.summary;
-            // this.finals[i]=this.title[i]+":"+this.message[i];
           console.log(result);
         })
       })
@@ -54,34 +50,48 @@ export default{
   })
 
   },
+  
   methods: {
     itemClick(n){
-      let index=this.total-n-1-(this.currentPage-1)*this.pageSize;
-      this.$store.commit('getIndex', index);
+      let id=this.items[this.total-n-1-(this.currentPage-1)*this.pageSize];
       this.$router.push({
-        path:"/articles/"+"article"+index+""
+        path:"/articles/"+id
       });
       },
  
      handleCurrentChange: function(currentPage){
-        this.currentPage = currentPage;
-        this.start=this.total-(this.currentPage*this.pageSize)>0?this.total-(this.currentPage*this.pageSize):0;
-        this.end=this.total-((this.currentPage-1)*this.pageSize);
-      },
-  }
+        this.$store.commit('setCurrentPage1',currentPage);
+        this.$router.push({
+          path:'/articleList/'+currentPage,
+        });
+
+        this.axios.get("/catalog/data").then((result)=>{
+          this.total=result.data.article_count;
+          this.start=this.total-(this.currentPage*this.pageSize)>0?this.total-(this.currentPage*this.pageSize)-1:0;
+          this.end=this.total-((this.currentPage-1)*this.pageSize);
+            for(let i=this.total-1; i>=0; i--){
+            this.axios.get("/catalog/articlesData").then((result)=>{
+              this.items[i]=result.data[i]._id;
+              this.axios.get("/catalog/articlesData/"+this.items[i]).then(result=>{
+                this.message[i]=result.data.article.summary;
+              console.log(result);
+        })
+      })
+    }
+  })
+  },
+}
 }
 </script>
 
+
 <style scoped>
-/* .main {
-  width:90%;
-  padding-left: 5%;
-} */
+
 .text-right :hover {
   background-color: whitesmoke;
 }
 .text-container {
-  background-color: white;
+  background-color: #f9f9fb;
   border-bottom:1px solid rgb(191, 185, 185);
   padding-left: 5px;
   height: 3em;

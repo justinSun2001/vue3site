@@ -4,14 +4,11 @@
     <div class="user">
       <img src='../assets/img/user.png'/>
     </div>
-    <!-- <div class="icon">
-      <img src='../assets/img/search.png'/>
-    </div> -->
   </div>
   <ul class="nav">
     <li><a :class="{a1:inUse1}" @click="getHome"> HOME </a></li>
     <li><a :class="{a1:inUse2}" @click="getArticles"> ARTICLES </a></li>
-    <li><a :class="{a1:inUse3}" @click="getContact"> CONTACT </a></li>
+    <li><a :class="{a1:inUse3}" @click="getNbadata"> NBAData </a></li>
     <li><a :class="{a1:inUse4}" @click="getAbout"> ABOUT </a></li>
   </ul>
 </div>
@@ -28,17 +25,17 @@
     methods: {
       getHome(){
         this.$router.push({
-          path:"/home/"+this.$store.state.userToken
+          path:"/home/"+this.$store.state.currentPage
         });
       },
       getArticles(){
         this.$router.push({
-          path:"/articleList/"+this.$store.state.userToken
+          path:"/articleList/"+this.$store.state.currentPage1
         });
       },
-      getContact(){
+      getNbadata(){
         this.$router.push({
-          path:"/contact/"+this.$store.state.userToken
+          path:"/nbadata/"+this.$store.state.userToken
         });
       },
       getAbout(){
@@ -56,7 +53,7 @@
   justify-content: space-between;
   width: 100%;
   height: 54px;
-  background-color: #070707e5;
+  background-color: #fff;
   font-size: 8px;
 }
 
@@ -101,7 +98,7 @@
 } */
 a {
   text-decoration: none;
-  color: white; 
+  color: black; 
   font-weight: bold;
   cursor: pointer;
 }
